@@ -1,0 +1,39 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.border {
+  border: solid;
+}
+
+.float {
+  padding: 0%;
+  border: solid;
+  padding: 0px;
+  max-width: 300px;
+  min-height: 200px;
+}
+
+.left {
+  float: left;
+  min-height: 200px;
+}
+
+.right {
+  float: right;
+  display: inline;
+  position: relative;
+
+}
+
+.top {
+  display: inline;
+
+
+}
+
+.bottom {
+  display: inline;
+}
