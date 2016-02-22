@@ -4,10 +4,9 @@
 import ReactDOM from "react-dom"
 import React from "react"
 
-ReactDOM.render(
-    <div>
-        hyyyy
-    </div>
+import store from "./store"
+import { Provider } from "react-redux";
+import CompoItem from "./Comp"
 
-    , document.getElementById("app")
-);
+ReactDOM.render(  <Provider store={store}><CompoItem /></Provider>    ,document.getElementById("app")  );
+
