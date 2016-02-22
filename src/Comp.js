@@ -5,13 +5,15 @@ import React from "react";
 import { connect } from "react-redux"
 
 export const ADD_TEXT = "ADD_TEXT";
+export const MULTIPLICATION="MULTIPLICATION";
 
-const Comp = ({text,addText}) => {
-  let inp;
+const Comp = ({text,multiplication}) => {
+  let num1,num2;
   return (
       <div>
-        <input type="text" ref={(node)=>{inp=node}}/>
-        <input type="button" onClick={()=> { addText(inp.value); }} value="Set Text"/><br/>
+        <input type="text" ref={(node)=>{num1=node}} width="30"   /> *
+        <input type="text" ref={(node)=>{num2=node}} width="30"  />
+        <input type="button" onClick={()=> { multiplication(num1.value,num2.value); }} value="MULTIPLICATION"/><br/>
         <input type="text" value={text}/>
       </div>
   );
@@ -22,11 +24,11 @@ var mapStattoProps = (state) => {
     text: state.text
   };
 };
-
+//dispacth create Action
 var mapDispatchtoProp = (dispatch)=> {
   return {
-    addText: (text)=> {
-      dispatch({text: text, type: ADD_TEXT})
+    multiplication: (num1,num2)=> {
+      dispatch({ type: MULTIPLICATION , num1,num2})
     }
   };
 }
