@@ -10,9 +10,11 @@ export const MATH_ACTION = {
     MULTIPLICATION : 'MULTIPLICATION',
     ADDITION: 'ADDITION',
     SUBTRACTION:'SUBTRACTION',
-    DIVIDE:'DIVIDE' };
+    DIVIDE:'DIVIDE',
+    ALL_FUNC :"ALL_FUNC"
+};
 
-const Comp = ({text,multiplication,addition,subtraction,divide}) => {
+const Comp = ({mathFunc,values,text,addition,subtraction,multiplication,divide}) => {
   let num1, num2;
   return (
       <div>
@@ -23,8 +25,14 @@ const Comp = ({text,multiplication,addition,subtraction,divide}) => {
         <input type="button" onClick={()=> { subtraction(num1.value,num2.value); }} value="-"/>
         <input type="button" onClick={()=> { multiplication(num1.value,num2.value); }} value="*"/>
         <input type="button" onClick={()=> { divide(num1.value,num2.value); }} value="/"/><br/>
+        <input type="text" value={text}/><br/><br/>
 
-        <input type="text" value={text}/>
+        <input type="button" value="Math"  onClick= {()=>mathFunc(num1.value,num2.value)}  /><br/>
+
+        + =<input type="text" value={values.sumtext}/><br/>
+        - =<input type="text" value={values.subtext}/><br/>
+        * =<input type="text" value={values.multext}/><br/>
+        / =<input type="text" value={values.divtext}/>
 
       </div>
   );
@@ -32,12 +40,16 @@ const Comp = ({text,multiplication,addition,subtraction,divide}) => {
 
 var mapStattoProps = (state) => {
   return {
-    text: state.text
+    values: state.values,
+    text:state.text
   };
 };
 //dispacth create Action
 var mapDispatchtoProp = (dispatch)=> {
   return {
+    mathFunc: (num1,num2)=>{
+      dispatch({type:MATH_ACTION.ALL_FUNC,num1,num2})
+    },
     multiplication: (num1, num2)=> {
       dispatch({type: MATH_ACTION.MULTIPLICATION, num1, num2})
     },

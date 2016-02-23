@@ -5,7 +5,7 @@
 import React from "react"
 import { ADD_TEXT , MATH_ACTION } from "./Comp"
 
-export default  (state='', action='') => {
+let text =  (state='', action) => {
   switch (action.type) {
     case ADD_TEXT:
         return action.text;
@@ -20,7 +20,33 @@ export default  (state='', action='') => {
     default :
       return state;
   }
-
 }
+
+let values =(state={},action)=>{
+
+  switch(action.type){
+    case MATH_ACTION.ALL_FUNC:{
+      let newState = {};
+      action.type=MATH_ACTION.ADDITION;
+
+      newState = Object.assign({}, newState, { sumtext: text(state.sumtext,action) });
+      //state.sumtext =text(state.sumtext,action);
+      action.type=MATH_ACTION.SUBTRACTION;
+      newState = Object.assign({}, newState, { subtext: text(state.subtext,action) });
+      //state.subtext =text(state.subtext,action);
+      action.type=MATH_ACTION.MULTIPLICATION;
+      newState = Object.assign({}, newState, { multext: text(state.multext,action) });
+      state.multext =text(state.multext,action);
+      action.type=MATH_ACTION.DIVIDE;
+      newState = Object.assign({}, newState, { divtext: text(state.divtext,action) });
+      //state.divtext =text(state.divtext,action);
+      console.log(state);
+      return newState;
+    }
+    default  : return state;
+  }
+}
+
+export { text , values  };
 
 
